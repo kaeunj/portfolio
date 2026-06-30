@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Cursor orb -->
+  <div class="cursor-orb" aria-hidden="true"></div>
+
+  <header class="header">
+    <!-- 수정: 로고 -->
+    <a href="#hero" class="logo">Portfolio</a>
+    <nav>
+      <ul class="nav">
+        <li><a href="#profile" data-section="profile">Profile</a></li>
+        <li><a href="#uiux" data-section="uiux">UI/UX Design</a></li>
+        <li><a href="#web" data-section="web">Web Publishing</a></li>
+        <li><a href="#graphic" data-section="graphic">Graphic Design</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="snap-container" id="snapContainer">
+
+    <!-- HERO -->
+    <section class="section hero" id="hero">
+
+      <!-- Floating blobs -->
+      <div class="hero-blobs" aria-hidden="true">
+        <div class="hero-blob hero-blob-1"></div>
+        <div class="hero-blob hero-blob-2"></div>
+        <div class="hero-blob hero-blob-3"></div>
+      </div>
+
+      <div class="hero-bar hero-bar--top">
+        <!-- 수정: 이름 -->
+        <span>KAEUN KO &nbsp;|&nbsp; Hope you enjoy it</span>
+        <a href="#" class="hero-view-btn" aria-label="포트폴리오 전체 보기">
+          View Full Portfolio <span class="hero-view-arrow">↗</span>
+        </a>
+      </div>
+
+      <div class="hero-center">
+        <!-- 수정: 이름 / 직함 -->
+        <h1 class="hero-name">PORTFOLIO</h1>
+        <p class="hero-tagline">UI/UX Designer &amp; Web Publisher</p>
+
+        <div class="hero-keywords" aria-label="핵심 역량">
+          <span class="hero-keyword">UX Research</span>
+          <span class="hero-keyword">UI Design</span>
+          <span class="hero-keyword">Web Publishing</span>
+        </div>
+      </div>
+
+      <div class="hero-bar hero-bar--bottom">
+        <nav class="hero-links">
+          <a href="#uiux">UI/UX Design</a>
+          <span class="hero-sep">|</span>
+          <a href="#web">Web Publishing</a>
+          <span class="hero-sep">|</span>
+          <a href="#graphic">Graphic Design</a>
+        </nav>
+        <div class="hero-scroll" aria-hidden="true">
+          <span class="hero-scroll-text">Scroll to explore</span>
+          <span class="hero-scroll-arrow">↓</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="section" id="profile">
+      <div class="container profile-wrap fade-up">
+        <h2 class="section-title">Profile</h2>
+
+        <div class="section-body">
+        <div class="profile-layout">
+          <!-- 사진 -->
+          <div class="profile-photo img-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+            </svg>
+          </div>
+
+          <!-- 상세 정보 -->
+          <div class="profile-info">
+
+            <!-- Career -->
+            <div class="profile-block">
+              <h3 class="profile-block-title">Career</h3>
+              <ul class="profile-list">
+                <!-- 항목 복사해서 추가 -->
+                <li class="profile-list-item">
+                  <span class="profile-item-org">회사명</span>
+                  <span class="profile-item-role">직책 / 포지션</span>
+                  <span class="profile-item-period">2024. 03 — 현재</span>
+                </li>
+                <li class="profile-list-item">
+                  <span class="profile-item-org">회사명</span>
+                  <span class="profile-item-role">직책 / 포지션</span>
+                  <span class="profile-item-period">2023. 06 — 2024. 02</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Education -->
+            <div class="profile-block">
+              <h3 class="profile-block-title">Education</h3>
+              <ul class="profile-list">
+                <li class="profile-list-item">
+                  <span class="profile-item-org">학교명</span>
+                  <span class="profile-item-role">전공</span>
+                  <span class="profile-item-period">2020. 03 — 2024. 02</span>
+                </li>
+                <li class="profile-list-item">
+                  <span class="profile-item-org">학교명</span>
+                  <span class="profile-item-role">전공 / 과정</span>
+                  <span class="profile-item-period">2023. 09 — 2024. 03</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- License -->
+            <div class="profile-block">
+              <h3 class="profile-block-title">License</h3>
+              <ul class="profile-list">
+                <li class="profile-list-item">
+                  <span class="profile-item-org">자격증명</span>
+                  <span class="profile-item-period">2023. 06</span>
+                </li>
+                <li class="profile-list-item">
+                  <span class="profile-item-org">자격증명</span>
+                  <span class="profile-item-period">2022. 11</span>
+                </li>
+                <li class="profile-list-item">
+                  <span class="profile-item-org">자격증명</span>
+                  <span class="profile-item-period">2022. 05</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Skills -->
+            <div class="profile-block">
+              <h3 class="profile-block-title">Skills</h3>
+              <!-- 수정: 사용 툴 태그 -->
+              <div class="tags">
+                <span class="tag">Figma</span>
+                <span class="tag">Photoshop</span>
+                <span class="tag">HTML/CSS</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">GSAP</span>
+              </div>
+            </div>
+
+          </div><!-- /profile-info -->
+        </div><!-- /profile-layout -->
+        </div><!-- /section-body -->
+      </div>
+    </section>
+
+    
+    <!-- UIUX DESIGN -->
+    <section class="section" id="uiux">
+      <div class="container slider-section fade-up">
+        <h2 class="section-title">UI/UX Design</h2>
+        <div class="section-body">
+        <div class="slider-wrapper" data-slider>
+          <button class="slider-arrow slider-prev" aria-label="이전 프로젝트">&#8592;</button>
+          <div class="slider-viewport">
+            <div class="slider-track">
+              <!-- 수정: 프로젝트 -->
+              <div class="slide slide--uiux">
+                <div class="slide-info">
+                  <h3 class="slide-title">Project Title</h3>
+                  <p class="slide-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                  <div class="slide-actions">
+                    <a href="#" class="btn">Visit Website</a>
+                    <a href="#" class="btn btn--outline">Figma</a>
+                  </div>
+                </div>
+                <div class="slide-phones">
+                  <div class="phone-mockup img-placeholder"></div>
+                  <div class="phone-mockup img-placeholder"></div>
+                </div>
+              </div>
+              <div class="slide slide--uiux">
+                <div class="slide-info">
+                  <h3 class="slide-title">Project Title</h3>
+                  <p class="slide-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                  <div class="slide-actions">
+                    <a href="#" class="btn">Visit Website</a>
+                    <a href="#" class="btn btn--outline">Figma</a>
+                  </div>
+                </div>
+                <div class="slide-phones">
+                  <div class="phone-mockup img-placeholder"></div>
+                  <div class="phone-mockup img-placeholder"></div>
+                </div>
+              </div>
+              <div class="slide slide--uiux">
+                <div class="slide-info">
+                  <h3 class="slide-title">Project Title</h3>
+                  <p class="slide-desc">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+                  <div class="slide-actions">
+                    <a href="#" class="btn">Visit Website</a>
+                    <a href="#" class="btn btn--outline">Figma</a>
+                  </div>
+                </div>
+                <div class="slide-phones">
+                  <div class="phone-mockup img-placeholder"></div>
+                  <div class="phone-mockup img-placeholder"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-arrow slider-next" aria-label="다음 프로젝트">&#8594;</button>
+        </div>
+        <div class="slider-indicator">
+          <span class="current">01</span> / <span class="total">03</span>
+        </div>
+        </div><!-- /section-body -->
+      </div>
+    </section>
+    
+    <!-- WEB PUBLISHING -->
+    <section class="section" id="web">
+      <div class="container slider-section fade-up">
+        <h2 class="section-title">Web Publishing</h2>
+        <div class="section-body">
+        <div class="slider-wrapper" data-slider>
+          <button class="slider-arrow slider-prev" aria-label="이전 프로젝트">&#8592;</button>
+          <div class="slider-viewport">
+            <div class="slider-track">
+              <!-- 수정: 프로젝트 -->
+              <div class="slide slide--web">
+                <div class="slide-image img-placeholder">
+                  <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                </div>
+                <div class="slide-side">
+                  <h3 class="slide-title">Project Title</h3>
+                  <p class="slide-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                  <div class="slide-actions">
+                    <a href="#" class="btn">Visit Website</a>
+                    <a href="#" class="btn btn--outline">Figma</a>
+                  </div>
+                </div>
+              </div>
+              <div class="slide slide--web">
+                <div class="slide-image img-placeholder">
+                  <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                </div>
+                <div class="slide-side">
+                  <h3 class="slide-title">Project Title</h3>
+                  <p class="slide-desc">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+                  <div class="slide-actions">
+                    <a href="#" class="btn">Visit Website</a>
+                    <a href="#" class="btn btn--outline">Figma</a>
+                  </div>
+                </div>
+              </div>
+              <div class="slide slide--web">
+                <div class="slide-image img-placeholder">
+                  <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                </div>
+                <div class="slide-side">
+                  <h3 class="slide-title">Project Title</h3>
+                  <p class="slide-desc">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                  <div class="slide-actions">
+                    <a href="#" class="btn">Visit Website</a>
+                    <a href="#" class="btn btn--outline">Figma</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-arrow slider-next" aria-label="다음 프로젝트">&#8594;</button>
+        </div>
+        <div class="slider-indicator">
+          <span class="current">01</span> / <span class="total">03</span>
+        </div>
+        </div><!-- /section-body -->
+      </div>
+    </section>
+
+    <!-- GRAPHIC DESIGN -->
+    <section class="section" id="graphic">
+      <div class="container graphic-section fade-up">
+        <h2 class="section-title">Graphic Design</h2>
+        <div class="section-body">
+        <div class="graphic-grid">
+          <!-- 수정: 그래픽 작품 -->
+          <div class="graphic-item" data-title="Project 01" data-desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+            <div class="img-placeholder">
+              <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            </div>
+            <div class="graphic-overlay">
+              <h4>Project 01</h4>
+              <p>Brand Identity</p>
+            </div>
+          </div>
+          <div class="graphic-item" data-title="Project 02" data-desc="Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">
+            <div class="img-placeholder">
+              <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            </div>
+            <div class="graphic-overlay">
+              <h4>Project 02</h4>
+              <p>Poster Design</p>
+            </div>
+          </div>
+          <div class="graphic-item" data-title="Project 03" data-desc="Ut enim ad minim veniam, quis nostrud exercitation ullamco.">
+            <div class="img-placeholder">
+              <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            </div>
+            <div class="graphic-overlay">
+              <h4>Project 03</h4>
+              <p>Editorial Layout</p>
+            </div>
+          </div>
+          <div class="graphic-item" data-title="Project 04" data-desc="Duis aute irure dolor in reprehenderit in voluptate velit esse.">
+            <div class="img-placeholder">
+              <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            </div>
+            <div class="graphic-overlay">
+              <h4>Project 04</h4>
+              <p>Packaging</p>
+            </div>
+          </div>
+          <div class="graphic-item" data-title="Project 05" data-desc="Excepteur sint occaecat cupidatat non proident sunt in culpa.">
+            <div class="img-placeholder">
+              <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            </div>
+            <div class="graphic-overlay">
+              <h4>Project 05</h4>
+              <p>Social Media</p>
+            </div>
+          </div>
+          <div class="graphic-item" data-title="Project 06" data-desc="Sunt in culpa qui officia deserunt mollit anim id est laborum.">
+            <div class="img-placeholder">
+              <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            </div>
+            <div class="graphic-overlay">
+              <h4>Project 06</h4>
+              <p>Logo Design</p>
+            </div>
+          </div>
+        </div>
+        </div><!-- /section-body -->
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="section footer" id="footer">
+      <div class="container footer-inner">
+        <!-- 수정: 이메일 -->
+        <a href="mailto:hello@example.com" class="footer-email">hello@example.com</a>
+        <!-- 수정: 카피라이트 -->
+        <p class="footer-copy">&copy; 2026 Portfolio. All rights reserved.</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <div class="modal" id="graphicModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="닫기">&times;</button>
+      <div class="modal-image img-placeholder">
+        <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+      </div>
+      <h3 id="modalTitle">Project Title</h3>
+      <p id="modalDesc">Project description goes here.</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
