@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/logo3.svg" >
+  <title>Brand Logo Design — Graphic Design | Portfolio</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Cursor orb -->
+  <div class="cursor-orb" aria-hidden="true"></div>
+
+  <header class="menubar">
+    <div class="menubar-left">
+      <a href="index.html#hero" class="menubar-apple" aria-label="홈으로">
+        <img src="assets/icons/logo-w-s.svg" alt="" class="menubar-apple-icon" aria-hidden="true">
+      </a>
+      <nav class="menubar-nav">
+        <a href="index.html#profile" class="menubar-nav-item">About</a>
+        <div class="menubar-nav-dropdown">
+          <span class="menubar-nav-item menubar-nav-item--has-sub">Projects</span>
+          <div class="nav-submenu">
+            <a href="index.html#uiux" class="nav-submenu-item">UI/UX Design</a>
+            <a href="index.html#web" class="nav-submenu-item">Web Publishing</a>
+            <a href="index.html#graphic" class="nav-submenu-item">Graphic Design</a>
+          </div>
+        </div>
+        <a href="index.html#footer" class="menubar-nav-item">Contact</a>
+      </nav>
+    </div>
+    <div class="menubar-right">
+      <img src="assets/icons/no-sound.svg" alt="" class="menubar-sysicon" aria-hidden="true">
+      <img src="assets/icons/bluetooth.svg" alt="" class="menubar-sysicon" aria-hidden="true">
+      <img src="assets/icons/battery.svg" alt="" class="menubar-sysicon" aria-hidden="true">
+      <img src="assets/icons/wifi.svg" alt="" class="menubar-sysicon" aria-hidden="true">
+      <time class="menubar-clock" id="menuClock"></time>
+    </div>
+  </header>
+
+  <main class="detail-main">
+    <div class="container">
+      <a href="index.html#graphic" class="detail-back">
+        <span class="detail-back-icon" aria-hidden="true">&#8592;</span> Back to Graphic Design
+      </a>
+
+      <div class="detail-head">
+        <h1 class="detail-title">Brand Logo Design</h1>
+        <p class="detail-category">Logo Design</p>
+      </div>
+
+      <div class="detail-image-wrap detail-reveal">
+        <img src="assets/images/logo-desc.png" alt="브랜드 로고 디자인 작업물" class="detail-image">
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

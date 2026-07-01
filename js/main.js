@@ -83,21 +83,21 @@ gsap.registerPlugin(ScrollTrigger);
   const el = document.getElementById('roleText');
   if (!el) return;
 
-  const roles = ['UX/UI Designer', 'Web Publisher', 'Interaction Designer', 'Creative Thinker'];
+  const roles = ['UX/UI Designer', 'Web Publisher', 'Interaction Designer'];
   let idx = 0;
 
   setInterval(() => {
     gsap.to(el, {
       opacity: 0,
       y: -10,
-      duration: 0.28,
+      duration: 0.18,
       ease: 'power2.in',
       onComplete() {
         idx = (idx + 1) % roles.length;
         el.textContent = roles[idx];
         gsap.fromTo(el,
           { opacity: 0, y: 10 },
-          { opacity: 1, y: 0, duration: 0.28, ease: 'power2.out', clearProps: 'y' }
+          { opacity: 1, y: 0, duration: 0.18, ease: 'power2.out', clearProps: 'y' }
         );
       },
     });
@@ -105,7 +105,69 @@ gsap.registerPlugin(ScrollTrigger);
 })();
 
 /* ---------------------------------------------------------
-   5. Desktop 폴더 아이콘 클릭 → 해당 섹션으로 이동
+   5. Sticky Note 드래그 인터랙션
+   --------------------------------------------------------- */
+(function initStickyNoteDrag() {
+  const note = document.querySelector('.sticky-note');
+  if (!note) return;
+
+  const EDGE_MARGIN = 48; // 화면 밖으로 완전히 벗어나지 않도록 최소한 남겨둘 여백
+
+  let dragging = false;
+  let dragRect = null;
+  let startX = 0;
+  let startY = 0;
+  let startOffsetX = 0;
+  let startOffsetY = 0;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  note.addEventListener('pointerdown', (e) => {
+    dragging = true;
+    note.setPointerCapture(e.pointerId);
+
+    startX = e.clientX;
+    startY = e.clientY;
+    startOffsetX = offsetX;
+    startOffsetY = offsetY;
+    dragRect = note.getBoundingClientRect();
+
+    note.classList.add('is-dragging');
+    gsap.to(note, { scale: 1.03, rotate: -1.5, duration: 0.25, ease: 'power2.out' });
+  });
+
+  note.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+
+    const deltaXMax = (window.innerWidth - EDGE_MARGIN) - dragRect.left;
+    const deltaXMin = EDGE_MARGIN - dragRect.right;
+    const deltaYMax = (window.innerHeight - EDGE_MARGIN) - dragRect.top;
+    const deltaYMin = EDGE_MARGIN - dragRect.bottom;
+
+    const deltaX = Math.min(Math.max(e.clientX - startX, deltaXMin), deltaXMax);
+    const deltaY = Math.min(Math.max(e.clientY - startY, deltaYMin), deltaYMax);
+
+    offsetX = startOffsetX + deltaX;
+    offsetY = startOffsetY + deltaY;
+
+    gsap.set(note, { x: offsetX, y: offsetY });
+  });
+
+  function endDrag(e) {
+    if (!dragging) return;
+    dragging = false;
+    note.classList.remove('is-dragging');
+    note.releasePointerCapture(e.pointerId);
+
+    gsap.to(note, { scale: 1, rotate: 0, duration: 0.5, ease: 'power3.out' });
+  }
+
+  note.addEventListener('pointerup', endDrag);
+  note.addEventListener('pointercancel', endDrag);
+})();
+
+/* ---------------------------------------------------------
+   6. Desktop 폴더 아이콘 클릭 → 해당 섹션으로 이동
    --------------------------------------------------------- */
 document.querySelectorAll('.desktop-icon').forEach((icon) => {
   icon.addEventListener('click', () => {
@@ -115,7 +177,7 @@ document.querySelectorAll('.desktop-icon').forEach((icon) => {
 });
 
 /* ---------------------------------------------------------
-   6. Section Fade-up + 메뉴바 active 상태
+   7. Section Fade-up + 메뉴바 active 상태
    --------------------------------------------------------- */
 const navLinks      = document.querySelectorAll('.menubar-nav-item');
 const sections      = document.querySelectorAll('.section');
@@ -171,13 +233,13 @@ const heroFadeEl = document.querySelector('#hero .fade-up');
 if (heroFadeEl) heroFadeEl.classList.add('visible');
 
 /* ---------------------------------------------------------
-   7. 메뉴바 / Apple 로고 클릭 Smooth Scroll
+   8. 메뉴바 / Apple 로고 클릭 Smooth Scroll
    --------------------------------------------------------- */
 navLinks.forEach((link) => {
   link.addEventListener('click', (e) => {
-    e.preventDefault();
     const href = link.getAttribute('href');
-    if (!href) return;
+    if (!href || !href.startsWith('#')) return; // 다른 페이지 링크는 기본 이동 동작 유지
+    e.preventDefault();
     const targetId = href.replace('#', '');
     const target   = document.getElementById(targetId);
     if (target) target.scrollIntoView({ behavior: 'smooth' });
@@ -186,9 +248,9 @@ navLinks.forEach((link) => {
 
 document.querySelectorAll('.nav-submenu-item').forEach((item) => {
   item.addEventListener('click', (e) => {
-    e.preventDefault();
     const href = item.getAttribute('href');
-    if (!href) return;
+    if (!href || !href.startsWith('#')) return; // 다른 페이지 링크는 기본 이동 동작 유지
+    e.preventDefault();
     const targetId = href.replace('#', '');
     const target   = document.getElementById(targetId);
     if (target) target.scrollIntoView({ behavior: 'smooth' });
@@ -197,13 +259,15 @@ document.querySelectorAll('.nav-submenu-item').forEach((item) => {
 
 document.querySelectorAll('.menubar-apple').forEach((link) => {
   link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href') || '';
+    if (!href.startsWith('#')) return; // 다른 페이지 링크는 기본 이동 동작 유지
     e.preventDefault();
     document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' });
   });
 });
 
 /* ---------------------------------------------------------
-   8. 슬라이더
+   9. 슬라이더
    --------------------------------------------------------- */
 function initSlider(wrapper) {
   const track     = wrapper.querySelector('.slider-track');
@@ -234,33 +298,83 @@ function initSlider(wrapper) {
 document.querySelectorAll('[data-slider]').forEach(initSlider);
 
 /* ---------------------------------------------------------
-   9. 그래픽 모달
+   10. 그래픽 디테일 페이지 — 작업물 이미지 스크롤 리빌
    --------------------------------------------------------- */
-const modal      = document.getElementById('graphicModal');
-const modalTitle = document.getElementById('modalTitle');
-const modalDesc  = document.getElementById('modalDesc');
-const modalClose = modal.querySelector('.modal-close');
+(function initDetailReveal() {
+  const target = document.querySelector('.detail-reveal');
+  if (!target) return;
 
-document.querySelectorAll('.graphic-item').forEach((item) => {
-  item.addEventListener('click', () => {
-    modalTitle.textContent = item.dataset.title;
-    modalDesc.textContent  = item.dataset.desc;
-    modal.classList.add('open');
-    gsap.fromTo(
-      modal.querySelector('.modal-content'),
-      { y: 24, opacity: 0 },
-      { y: 0,  opacity: 1, duration: 0.4, ease: 'power2.out' }
-    );
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  revealObserver.observe(target);
+})();
+
+/* ---------------------------------------------------------
+   11. 그래픽 디테일 페이지 — Back 버튼 (뒤로가기로 즉시 복귀)
+   --------------------------------------------------------- */
+(function initDetailBack() {
+  const backLink = document.querySelector('.detail-back');
+  if (!backLink) return;
+
+  backLink.addEventListener('click', (e) => {
+    const href = backLink.getAttribute('href') || '';
+    const targetId = href.split('#')[1];
+    if (targetId) sessionStorage.setItem('scrollToSection', targetId);
+
+    const cameFromSamePage =
+      document.referrer &&
+      new URL(document.referrer).origin === window.location.origin;
+
+    // 브라우저 캐시(bfcache)에서 즉시 복원되도록 실제 뒤로가기를 우선 사용.
+    // 참조 페이지가 없거나(직접 접속) 히스토리가 없으면 링크로 정상 이동.
+    if (cameFromSamePage && window.history.length > 1) {
+      e.preventDefault();
+      window.history.back();
+    }
   });
-});
+})();
 
-function closeModal() {
-  gsap.to(modal.querySelector('.modal-content'), {
-    y: 16, opacity: 0, duration: 0.28, ease: 'power2.in',
-    onComplete: () => modal.classList.remove('open'),
+/* ---------------------------------------------------------
+   12. 뒤로가기로 돌아왔을 때 해당 섹션으로 즉시 이동
+   --------------------------------------------------------- */
+(function initRestoreScrollOnBack() {
+  function restore() {
+    const targetId = sessionStorage.getItem('scrollToSection');
+    if (!targetId) return;
+    sessionStorage.removeItem('scrollToSection');
+
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    target.scrollIntoView({ behavior: 'instant', block: 'start' });
+
+    // 이미지 로딩 중 스크롤을 옮기면 fade-up 트랜지션이 중간에 걸릴 수 있어 직접 확정 처리.
+    target.querySelectorAll('.fade-up').forEach((el) => {
+      el.classList.add('visible');
+      el.style.opacity = '';
+      el.style.transform = '';
+    });
+  }
+
+  // 이미지가 아직 로딩 중일 때 스크롤을 옮기면 레이아웃이 흔들릴 수 있으므로
+  // 문서가 완전히 로드된 뒤(load) 실행한다.
+  if (document.readyState === 'complete') {
+    restore();
+  } else {
+    window.addEventListener('load', restore);
+  }
+
+  // bfcache로 복원된 경우 load 이벤트가 다시 발생하지 않으므로 별도 처리.
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) restore();
   });
-}
-
-modalClose.addEventListener('click', closeModal);
-modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+})();
