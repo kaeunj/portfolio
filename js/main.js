@@ -1,13 +1,12 @@
 /* =========================================================
-   PORTFOLIO — main.js
-   Apple + Linear + Framer 스타일 / 과도한 네온 금지
-   GSAP 3.12 사용 (CDN으로 로드)
+   PORTFOLIO — main.js  (macOS Desktop 컨셉)
+   GSAP 3.12 사용 (CDN)
    ========================================================= */
 
 gsap.registerPlugin(ScrollTrigger);
 
 /* ---------------------------------------------------------
-   1. Cursor Orb  (마우스를 지연하며 부드럽게 추적)
+   1. Cursor Orb
    --------------------------------------------------------- */
 (function initCursorOrb() {
   const orb = document.querySelector('.cursor-orb');
@@ -24,99 +23,119 @@ gsap.registerPlugin(ScrollTrigger);
   });
 
   (function tick() {
-    orbX += (mouseX - orbX) * 0.07;
-    orbY += (mouseY - orbY) * 0.07;
+    orbX += (mouseX - orbX) * 0.1;
+    orbY += (mouseY - orbY) * 0.1;
     gsap.set(orb, { x: orbX, y: orbY });
     requestAnimationFrame(tick);
   })();
 })();
 
 /* ---------------------------------------------------------
-   2. Floating Blobs  (천천히 부유하는 배경 요소)
+   2. macOS 메뉴바 실시간 시계
    --------------------------------------------------------- */
-[
-  ['.hero-blob-1',  80,  50,  16,  9.0, 0.0],
-  ['.hero-blob-2', -65, -45, -13, 11.5, 1.6],
-  ['.hero-blob-3',  45,  65,   9,  7.5, 0.9],
-].forEach(([sel, x, y, rot, dur, delay]) => {
-  const el = document.querySelector(sel);
+(function initClock() {
+  const el = document.getElementById('menuClock');
   if (!el) return;
-  gsap.to(el, {
-    x, y, rotation: rot,
-    duration: dur,
-    delay,
-    repeat: -1,
-    yoyo: true,
-    ease: 'sine.inOut',
+
+  const days = ['일', '월', '화', '수', '목', '금', '토'];
+
+  function update() {
+    const now = new Date();
+    const month = now.getMonth() + 1;
+    const date  = now.getDate();
+    const day   = days[now.getDay()];
+    const h     = String(now.getHours()).padStart(2, '0');
+    const m     = String(now.getMinutes()).padStart(2, '0');
+    el.textContent = `${month}월 ${date}일 (${day}) ${h}:${m}`;
+  }
+
+  update();
+  setInterval(update, 1000);
+})();
+
+/* ---------------------------------------------------------
+   3. Desktop 등장 애니메이션
+   --------------------------------------------------------- */
+(function initDesktopReveal() {
+  const name = document.querySelector('.desktop-name');
+  if (!name) return;
+
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+  tl
+    .from('.menubar', { y: -20, opacity: 0, duration: 0.55 })
+    .from(name, { y: 32, opacity: 0, duration: 0.8 }, '-=0.2')
+    .from('.desktop-role', { y: 16, opacity: 0, duration: 0.6 }, '-=0.45')
+    .from('.sticky-note', { x: -28, opacity: 0, duration: 0.65 }, '-=0.5')
+    .from('.desktop-icons .desktop-icon', {
+      x: 28, opacity: 0,
+      stagger: 0.09,
+      duration: 0.5,
+      clearProps: 'x,opacity',
+    }, '-=0.55')
+    .from('.dock', { y: 24, opacity: 0, duration: 0.6 }, '-=0.5');
+})();
+
+/* ---------------------------------------------------------
+   4. Role 텍스트 자동 전환 (Apple 스타일 fade)
+   --------------------------------------------------------- */
+(function initRoleCycle() {
+  const el = document.getElementById('roleText');
+  if (!el) return;
+
+  const roles = ['UX/UI Designer', 'Web Publisher', 'Interaction Designer', 'Creative Thinker'];
+  let idx = 0;
+
+  setInterval(() => {
+    gsap.to(el, {
+      opacity: 0,
+      y: -10,
+      duration: 0.28,
+      ease: 'power2.in',
+      onComplete() {
+        idx = (idx + 1) % roles.length;
+        el.textContent = roles[idx];
+        gsap.fromTo(el,
+          { opacity: 0, y: 10 },
+          { opacity: 1, y: 0, duration: 0.28, ease: 'power2.out', clearProps: 'y' }
+        );
+      },
+    });
+  }, 2600);
+})();
+
+/* ---------------------------------------------------------
+   5. Desktop 폴더 아이콘 클릭 → 해당 섹션으로 이동
+   --------------------------------------------------------- */
+document.querySelectorAll('.desktop-icon').forEach((icon) => {
+  icon.addEventListener('click', () => {
+    const target = document.getElementById(icon.dataset.target);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
   });
 });
 
 /* ---------------------------------------------------------
-   3. Hero Text Reveal  (GSAP stagger — 글자 단위)
+   6. Section Fade-up + 메뉴바 active 상태
    --------------------------------------------------------- */
-(function initHeroReveal() {
-  const heroName = document.querySelector('.hero-name');
-  if (!heroName) return;
-
-  /* 글자 분리 */
-  const raw = heroName.textContent.trim();
-  heroName.innerHTML = '';
-
-  const chars = [...raw].map((ch) => {
-    const s = document.createElement('span');
-    s.textContent = ch === ' ' ? '\u00A0' : ch;
-    s.style.display = 'inline-block';
-    heroName.appendChild(s);
-    return s;
-  });
-
-  /* 타임라인 — 자연스럽고 절제된 속도 */
-  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-  tl
-    .from('.hero-bar--top', {
-      y: -18, opacity: 0, duration: 0.55,
-    })
-    .from(chars, {
-      y: 48, opacity: 0,
-      duration: 0.75, stagger: 0.03,
-    }, '-=0.15')
-    .from('.hero-tagline', {
-      y: 20, opacity: 0, duration: 0.6,
-    }, '-=0.45')
-    .from('.hero-keyword', {
-      y: 14, opacity: 0, duration: 0.45,
-      stagger: 0.07,
-    }, '-=0.35')
-    .from('.hero-bar--bottom .hero-links', {
-      y: 14, opacity: 0, duration: 0.5,
-    }, '-=0.35')
-    .from('.hero-bar--bottom .stat-card', {
-      y: 14, opacity: 0, duration: 0.45,
-      stagger: 0.09,
-    }, '-=0.4');
-})();
-
-/* ---------------------------------------------------------
-   5. Section Fade-up  (기존 CSS + IntersectionObserver 유지)
-   --------------------------------------------------------- */
-const navLinks     = document.querySelectorAll('.nav a');
-const sections     = document.querySelectorAll('.section');
+const navLinks      = document.querySelectorAll('.menubar-nav-item');
+const sections      = document.querySelectorAll('.section');
 const snapContainer = document.getElementById('snapContainer');
+
+const PROJECT_SECTIONS = new Set(['uiux', 'web', 'graphic']);
 
 function setActiveNav(sectionId) {
   navLinks.forEach((link) => {
-    link.classList.toggle('active', link.dataset.section === sectionId);
-  });
-  /* 모바일 링크도 동기화 */
-  document.querySelectorAll('.mobile-nav-list a').forEach((link) => {
-    link.classList.toggle('active', link.dataset.section === sectionId);
+    const ds = link.dataset.section;
+    const isActive =
+      (ds === 'about'    && sectionId === 'profile') ||
+      (ds === 'projects' && PROJECT_SECTIONS.has(sectionId)) ||
+      (ds === 'footer'   && sectionId === 'footer');
+    link.classList.toggle('active', isActive);
   });
 }
 
-/* 모바일(768px 이하)에서는 스냅 컨테이너 대신 뷰포트를 root로 사용 */
-const isMobileView = () => window.innerWidth <= 768;
-const observerRoot = isMobileView() ? null : snapContainer;
+const isMobileView  = () => window.innerWidth <= 768;
+const observerRoot  = isMobileView() ? null : snapContainer;
 
 const sectionObserver = new IntersectionObserver(
   (entries) => {
@@ -124,13 +143,13 @@ const sectionObserver = new IntersectionObserver(
       if (!entry.isIntersecting) return;
 
       const id = entry.target.id;
+
       if (id === 'hero') {
         navLinks.forEach((l) => l.classList.remove('active'));
       } else {
         setActiveNav(id);
       }
 
-      /* 섹션 진입 시 GSAP로 fade-up 요소 입장 */
       entry.target.querySelectorAll('.fade-up').forEach((el) => {
         if (el.classList.contains('visible')) return;
         el.classList.add('visible');
@@ -148,88 +167,43 @@ const sectionObserver = new IntersectionObserver(
 
 sections.forEach((s) => sectionObserver.observe(s));
 
-/* Hero 내부 fade-up 잔존 요소 guard */
 const heroFadeEl = document.querySelector('#hero .fade-up');
 if (heroFadeEl) heroFadeEl.classList.add('visible');
 
 /* ---------------------------------------------------------
-   6. 메뉴 클릭 Smooth Scroll (데스크톱 nav)
+   7. 메뉴바 / Apple 로고 클릭 Smooth Scroll
    --------------------------------------------------------- */
 navLinks.forEach((link) => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
-    const target = document.getElementById(link.dataset.section);
+    const href = link.getAttribute('href');
+    if (!href) return;
+    const targetId = href.replace('#', '');
+    const target   = document.getElementById(targetId);
     if (target) target.scrollIntoView({ behavior: 'smooth' });
   });
 });
 
-document.querySelector('.logo').addEventListener('click', (e) => {
-  e.preventDefault();
-  document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });
+document.querySelectorAll('.nav-submenu-item').forEach((item) => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const href = item.getAttribute('href');
+    if (!href) return;
+    const targetId = href.replace('#', '');
+    const target   = document.getElementById(targetId);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+document.querySelectorAll('.menubar-apple').forEach((link) => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' });
+  });
 });
 
 /* ---------------------------------------------------------
-   6-b. 모바일 햄버거 메뉴
-   --------------------------------------------------------- */
-(function initMobileNav() {
-  const hamburger    = document.querySelector('.hamburger');
-  const mobileNav    = document.querySelector('.mobile-nav');
-  const backdrop     = document.querySelector('.mobile-nav-backdrop');
-  const mobileLinks  = document.querySelectorAll('.mobile-nav-list a');
-
-  if (!hamburger) return;
-
-  function openNav() {
-    hamburger.classList.add('is-open');
-    mobileNav.classList.add('is-open');
-    backdrop.classList.add('is-open');
-    hamburger.setAttribute('aria-expanded', 'true');
-    mobileNav.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeNav() {
-    hamburger.classList.remove('is-open');
-    mobileNav.classList.remove('is-open');
-    backdrop.classList.remove('is-open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    mobileNav.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  hamburger.addEventListener('click', () => {
-    mobileNav.classList.contains('is-open') ? closeNav() : openNav();
-  });
-
-  backdrop.addEventListener('click', closeNav);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeNav();
-  });
-
-  /* 모바일 링크 클릭 → 메뉴 닫고 해당 섹션으로 이동 */
-  mobileLinks.forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      closeNav();
-      const target = document.getElementById(link.dataset.section);
-      if (target) {
-        setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 360);
-      }
-    });
-  });
-
-  /* active 상태 모바일 링크에도 동기화 */
-  const origSetActive = setActiveNav;
-  window.__setActiveMobile = function (sectionId) {
-    mobileLinks.forEach((l) => {
-      l.classList.toggle('active', l.dataset.section === sectionId);
-    });
-  };
-})();
-
-/* ---------------------------------------------------------
-   7. 슬라이더
+   8. 슬라이더
    --------------------------------------------------------- */
 function initSlider(wrapper) {
   const track     = wrapper.querySelector('.slider-track');
@@ -248,8 +222,6 @@ function initSlider(wrapper) {
     current = (index + total) % total;
     track.style.transform = `translateX(-${current * 100}%)`;
     currentEl.textContent = String(current + 1).padStart(2, '0');
-
-    /* 슬라이드 전환 시 GSAP 미세 페이드 */
     gsap.from(slides[current], {
       opacity: 0.5, duration: 0.45, ease: 'power2.out',
     });
@@ -262,7 +234,7 @@ function initSlider(wrapper) {
 document.querySelectorAll('[data-slider]').forEach(initSlider);
 
 /* ---------------------------------------------------------
-   8. 그래픽 모달
+   9. 그래픽 모달
    --------------------------------------------------------- */
 const modal      = document.getElementById('graphicModal');
 const modalTitle = document.getElementById('modalTitle');
@@ -273,8 +245,6 @@ document.querySelectorAll('.graphic-item').forEach((item) => {
   item.addEventListener('click', () => {
     modalTitle.textContent = item.dataset.title;
     modalDesc.textContent  = item.dataset.desc;
-
-    /* GSAP로 모달 등장 */
     modal.classList.add('open');
     gsap.fromTo(
       modal.querySelector('.modal-content'),

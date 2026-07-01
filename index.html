@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,64 +12,109 @@
   <!-- Cursor orb -->
   <div class="cursor-orb" aria-hidden="true"></div>
 
-  <header class="header">
-    <!-- 수정: 로고 -->
-    <a href="#hero" class="logo">Portfolio</a>
-    <nav>
-      <ul class="nav">
-        <li><a href="#profile" data-section="profile">Profile</a></li>
-        <li><a href="#uiux" data-section="uiux">UI/UX Design</a></li>
-        <li><a href="#web" data-section="web">Web Publishing</a></li>
-        <li><a href="#graphic" data-section="graphic">Graphic Design</a></li>
-      </ul>
-    </nav>
+  <header class="menubar">
+    <div class="menubar-left">
+      <a href="#hero" class="menubar-apple" aria-label="홈으로">
+        <img src="assets/icons/logo-w-s.svg" alt="" class="menubar-apple-icon" aria-hidden="true">
+      </a>
+      <nav class="menubar-nav">
+        <a href="#profile" class="menubar-nav-item" data-section="about">About</a>
+        <div class="menubar-nav-dropdown">
+          <span class="menubar-nav-item menubar-nav-item--has-sub" data-section="projects">Projects</span>
+          <div class="nav-submenu">
+            <a href="#uiux" class="nav-submenu-item">UI/UX Design</a>
+            <a href="#web" class="nav-submenu-item">Web Publishing</a>
+            <a href="#graphic" class="nav-submenu-item">Graphic Design</a>
+          </div>
+        </div>
+        <a href="#footer" class="menubar-nav-item" data-section="footer">Contact</a>
+      </nav>
+    </div>
+    <div class="menubar-right">
+      <img src="assets/icons/no-sound.svg" alt="" class="menubar-sysicon" aria-hidden="true">
+      <img src="assets/icons/bluetooth.svg" alt="" class="menubar-sysicon" aria-hidden="true">
+      <img src="assets/icons/battery.svg" alt="" class="menubar-sysicon" aria-hidden="true">
+      <img src="assets/icons/wifi.svg" alt="" class="menubar-sysicon" aria-hidden="true">
+      <time class="menubar-clock" id="menuClock"></time>
+    </div>
   </header>
 
   <main class="snap-container" id="snapContainer">
 
-    <!-- HERO -->
+    <!-- HERO — macOS Desktop -->
     <section class="section hero" id="hero">
 
-      <!-- Floating blobs -->
-      <div class="hero-blobs" aria-hidden="true">
-        <div class="hero-blob hero-blob-1"></div>
-        <div class="hero-blob hero-blob-2"></div>
-        <div class="hero-blob hero-blob-3"></div>
-      </div>
-
-      <div class="hero-bar hero-bar--top">
-        <!-- 수정: 이름 -->
-        <span>KAEUN KO &nbsp;|&nbsp; Hope you enjoy it</span>
-        <a href="#" class="hero-view-btn" aria-label="포트폴리오 전체 보기">
-          View Full Portfolio <span class="hero-view-arrow">↗</span>
-        </a>
-      </div>
-
-      <div class="hero-center">
-        <!-- 수정: 이름 / 직함 -->
-        <h1 class="hero-name">PORTFOLIO</h1>
-        <p class="hero-tagline">UI/UX Designer &amp; Web Publisher</p>
-
-        <div class="hero-keywords" aria-label="핵심 역량">
-          <span class="hero-keyword">UX Research</span>
-          <span class="hero-keyword">UI Design</span>
-          <span class="hero-keyword">Web Publishing</span>
+      <!-- Sticky Note -->
+      <div class="sticky-note" aria-hidden="true">
+        <div class="sticky-note-body">
+          <p>Hi 👋<br>Thanks for visiting my portfolio :)<br><br>-Kaeun</p>
+          <p class="sticky-tip">Tip 💡<br>Scroll to explore.</p>
         </div>
       </div>
 
-      <div class="hero-bar hero-bar--bottom">
-        <nav class="hero-links">
-          <a href="#uiux">UI/UX Design</a>
-          <span class="hero-sep">|</span>
-          <a href="#web">Web Publishing</a>
-          <span class="hero-sep">|</span>
-          <a href="#graphic">Graphic Design</a>
-        </nav>
-        <div class="hero-scroll" aria-hidden="true">
-          <span class="hero-scroll-text">Scroll to explore</span>
-          <span class="hero-scroll-arrow">↓</span>
+      <!-- Desktop Folder Icons (우측 세로 정렬) -->
+      <nav class="desktop-icons" aria-label="포트폴리오 섹션 바로가기">
+        <button class="desktop-icon" data-target="profile">
+          <img src="assets/icons/Folder.svg" alt="" class="desktop-icon-img" aria-hidden="true">
+          <span class="desktop-icon-label">PROFILE</span>
+        </button>
+        <button class="desktop-icon" data-target="uiux">
+          <img src="assets/icons/Folder.svg" alt="" class="desktop-icon-img" aria-hidden="true">
+          <span class="desktop-icon-label">UIUX DESIGN</span>
+        </button>
+        <button class="desktop-icon" data-target="web">
+          <img src="assets/icons/Folder.svg" alt="" class="desktop-icon-img" aria-hidden="true">
+          <span class="desktop-icon-label">WEB PUBLISHING</span>
+        </button>
+        <button class="desktop-icon" data-target="graphic">
+          <img src="assets/icons/Folder.svg" alt="" class="desktop-icon-img" aria-hidden="true">
+          <span class="desktop-icon-label">GRAPHIC DESIGN</span>
+        </button>
+      </nav>
+
+      <!-- 중앙 타이포그래피 -->
+      <div class="desktop-center">
+        <h1 class="desktop-name">KO KAEUN</h1>
+        <div class="desktop-roles" aria-live="polite">
+          <span class="desktop-role" id="roleText">UX/UI Designer</span>
         </div>
       </div>
+
+      <!-- Dock -->
+      <nav class="dock" aria-label="Dock">
+        <div class="dock-inner">
+          <a href="#hero" class="dock-item" aria-label="Finder">
+            <img src="assets/icons/Finder.svg" alt="Finder" class="dock-icon">
+            <span class="dock-tooltip">Finder</span>
+          </a>
+          <a href="#hero" class="dock-item" aria-label="Safari">
+            <img src="assets/icons/Safari.svg" alt="Safari" class="dock-icon">
+            <span class="dock-tooltip">Safari</span>
+          </a>
+          <button class="dock-item" aria-label="VS Code">
+            <img src="assets/icons/vscode.svg" alt="VS Code" class="dock-icon">
+            <span class="dock-tooltip">VS Code</span>
+          </button>
+          <a href="#hero" class="dock-item" aria-label="Figma">
+            <img src="assets/icons/Figma.svg" alt="Figma" class="dock-icon">
+            <span class="dock-tooltip">Figma</span>
+          </a>
+          <a href="#hero" class="dock-item" aria-label="Photoshop">
+            <img src="assets/icons/photoshop.svg" alt="Photoshop" class="dock-icon">
+            <span class="dock-tooltip">Photoshop</span>
+          </a>
+          <a href="mailto:jalmt37@gmail.com" class="dock-item" aria-label="Mail">
+            <img src="assets/icons/Mail.svg" alt="Mail" class="dock-icon">
+            <span class="dock-tooltip">Mail</span>
+          </a>
+          <div class="dock-sep" aria-hidden="true"></div>
+          <a href="#hero" class="dock-item" aria-label="Trash">
+            <img src="assets/icons/Trash Full.svg" alt="Trash" class="dock-icon">
+            <span class="dock-tooltip">Trash</span>
+          </a>
+        </div>
+      </nav>
+
     </section>
 
     <!-- PROFILE -->
