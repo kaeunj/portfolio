@@ -6,6 +6,7 @@
   <link rel="icon" type="image/svg+xml" href="/assets/icons/logo3.svg" >
   <title>Portfolio</title>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -120,89 +121,105 @@
 
     <!-- PROFILE -->
     <section class="section" id="profile">
-      <div class="container profile-wrap fade-up">
+      <div class="container profile-wrap">
         <h2 class="section-title">Profile</h2>
 
         <div class="section-body">
         <div class="profile-layout">
-          <!-- 사진 -->
-          <div class="profile-photo img-placeholder">
-            <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
-            </svg>
-          </div>
+          <!-- 프로필 사진 (추후 src만 교체하면 동일 레이아웃 유지) -->
+          <img
+            src="assets/images/profile-placeholder.svg"
+            alt="고가은 프로필 사진"
+            class="profile-photo"
+          >
 
-          <!-- 상세 정보 -->
-          <div class="profile-info">
+          <!-- 우측 정보 -->
+          <div class="profile-right">
 
-            <!-- Career -->
-            <div class="profile-block">
-              <h3 class="profile-block-title">Career</h3>
-              <ul class="profile-list">
-                <!-- 항목 복사해서 추가 -->
-                <li class="profile-list-item">
-                  <span class="profile-item-org">회사명</span>
-                  <span class="profile-item-role">직책 / 포지션</span>
-                  <span class="profile-item-period">2024. 03 — 현재</span>
-                </li>
-                <li class="profile-list-item">
-                  <span class="profile-item-org">회사명</span>
-                  <span class="profile-item-role">직책 / 포지션</span>
-                  <span class="profile-item-period">2023. 06 — 2024. 02</span>
-                </li>
-              </ul>
-            </div>
+            <div class="profile-top">
+              <!-- About me -->
+              <div class="profile-about">
+                <h3 class="profile-heading">About me</h3>
+                <div class="profile-about-body">
+                  <div class="profile-about-name">
+                    <span class="profile-name">고가은</span>
+                    <span class="profile-birth">2001. 07. 09</span>
+                  </div>
+                  <p class="profile-school">동덕여자대학교 데이터사이언스전공</p>
+                  <p class="profile-course">
+                    이젠아카데미 DX 교육센터<br>
+                    UXUI AI 툴셋 활용 웹서비스 기획·디자인&amp;<br>
+                    퍼블리싱(바이브코딩) 수료 (700h)
+                  </p>
+                </div>
+              </div>
 
-            <!-- Education -->
-            <div class="profile-block">
-              <h3 class="profile-block-title">Education</h3>
-              <ul class="profile-list">
-                <li class="profile-list-item">
-                  <span class="profile-item-org">학교명</span>
-                  <span class="profile-item-role">전공</span>
-                  <span class="profile-item-period">2020. 03 — 2024. 02</span>
-                </li>
-                <li class="profile-list-item">
-                  <span class="profile-item-org">학교명</span>
-                  <span class="profile-item-role">전공 / 과정</span>
-                  <span class="profile-item-period">2023. 09 — 2024. 03</span>
-                </li>
-              </ul>
-            </div>
-
-            <!-- License -->
-            <div class="profile-block">
-              <h3 class="profile-block-title">License</h3>
-              <ul class="profile-list">
-                <li class="profile-list-item">
-                  <span class="profile-item-org">자격증명</span>
-                  <span class="profile-item-period">2023. 06</span>
-                </li>
-                <li class="profile-list-item">
-                  <span class="profile-item-org">자격증명</span>
-                  <span class="profile-item-period">2022. 11</span>
-                </li>
-                <li class="profile-list-item">
-                  <span class="profile-item-org">자격증명</span>
-                  <span class="profile-item-period">2022. 05</span>
-                </li>
-              </ul>
-            </div>
+              <!-- Contact -->
+              <div class="profile-contact">
+                <h3 class="profile-heading">Contact</h3>
+                <ul class="contact-list">
+                  <li class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
+                      <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    </svg>
+                    <a href="mailto:jalmt37@gmail.com">jalmt37@gmail.com</a>
+                  </li>
+                  <li class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/>
+                    </svg>
+                    <a href="tel:010-3900-4874">010-3900-4874</a>
+                  </li>
+                </ul>
+              </div>
+            </div><!-- /profile-top -->
 
             <!-- Skills -->
-            <div class="profile-block">
-              <h3 class="profile-block-title">Skills</h3>
-              <!-- 수정: 사용 툴 태그 -->
-              <div class="tags">
-                <span class="tag">Figma</span>
-                <span class="tag">Photoshop</span>
-                <span class="tag">HTML/CSS</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">GSAP</span>
-              </div>
-            </div>
+            <div class="profile-skills">
+              <h3 class="profile-heading">Skills</h3>
 
-          </div><!-- /profile-info -->
+              <div class="skill-bars">
+                <div class="skill-row">
+                  <div class="skill-icons">
+                    <img src="assets/icons/Figma-p.svg" alt="Figma" class="skill-icon">
+                    <img src="assets/icons/Photoshop.svg" alt="Photoshop" class="skill-icon">
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-fill="89"></div>
+                  </div>
+                </div>
+                <div class="skill-row">
+                  <div class="skill-icons">
+                    <img src="assets/icons/html-p.svg" alt="HTML5" class="skill-icon">
+                    <img src="assets/icons/css-p.svg" alt="CSS3" class="skill-icon">
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-fill="80"></div>
+                  </div>
+                </div>
+                <div class="skill-row">
+                  <div class="skill-icons">
+                    <img src="assets/icons/javascript.svg" alt="JavaScript" class="skill-icon">
+                  </div>
+                  <div class="skill-track">
+                    <div class="skill-fill" data-fill="71"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tool-icons">
+                <img src="assets/icons/cursor-logo.svg" alt="Cursor" class="tool-icon">
+                <img src="assets/icons/claude-logo.svg" alt="Claude" class="tool-icon">
+                <img src="assets/icons/vercel.svg" alt="Vercel" class="tool-icon">
+                <img src="assets/icons/github.svg" alt="GitHub" class="tool-icon">
+                <img src="assets/icons/vscode-p.svg" alt="VS Code" class="tool-icon">
+                <img src="assets/icons/chatgpt-logo.svg" alt="ChatGPT" class="tool-icon tool-icon--chatgpt">
+                <img src="assets/icons/gsap-white 1.svg" alt="GSAP" class="tool-icon tool-icon--gsap">
+              </div>
+            </div><!-- /profile-skills -->
+
+          </div><!-- /profile-right -->
         </div><!-- /profile-layout -->
         </div><!-- /section-body -->
       </div>
@@ -215,55 +232,140 @@
         <h2 class="section-title">UI/UX Design</h2>
         <div class="section-body">
         <div class="slider-wrapper" data-slider>
-          <button class="slider-arrow slider-prev" aria-label="이전 프로젝트">&#8592;</button>
+          <button class="slider-arrow slider-prev" aria-label="이전 프로젝트"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
           <div class="slider-viewport">
             <div class="slider-track">
-              <!-- 수정: 프로젝트 -->
+              <!-- 수정: 기간/역할/태그 등 실제 프로젝트 정보에 맞게 조정하세요 -->
               <div class="slide slide--uiux">
-                <div class="slide-info">
-                  <h3 class="slide-title">Project Title</h3>
-                  <p class="slide-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                  <div class="slide-actions">
-                    <a href="#" class="btn">Visit Website</a>
-                    <a href="#" class="btn btn--outline">Figma</a>
+                <div class="slide-inner">
+                  <div class="slide-info">
+                    <p class="slide-role">Personal 100%</p>
+                    <h3 class="slide-title">국립극장 모바일 앱 디자인</h3>
+                    <div class="slide-facts">
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">작업 기여</span>
+                        <span class="slide-fact-value">기획 + 디자인</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">제작 기간</span>
+                        <span class="slide-fact-value">1 Week</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">개발 환경</span>
+                        <img src="assets/icons/figma-w.svg" alt="Figma" class="slide-fact-icon">
+                      </div>
+                    </div>
+                    <p class="slide-desc">국립극단 모바일 애플리케이션의 사용자 경험을 개선하기 위해 정보 탐색과 공연 예매 과정을 구성한 UI 디자인 프로젝트입니다.</p>
+                    <div class="slide-tags">
+                      <button type="button" class="slide-tag">Planning</button>
+                      <button type="button" class="slide-tag">Prototype</button>
+                    </div>
                   </div>
-                </div>
-                <div class="slide-phones">
-                  <div class="phone-mockup img-placeholder"></div>
-                  <div class="phone-mockup img-placeholder"></div>
+                  <div class="slide-mockup slide-mockup--national">
+                    <div class="mockup-glow" aria-hidden="true"></div>
+                    <img src="assets/images/national.png" alt="국립극장 모바일 앱 디자인 목업" class="mockup-image mockup-image--national" loading="lazy">
+                  </div>
                 </div>
               </div>
               <div class="slide slide--uiux">
-                <div class="slide-info">
-                  <h3 class="slide-title">Project Title</h3>
-                  <p class="slide-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                  <div class="slide-actions">
-                    <a href="#" class="btn">Visit Website</a>
-                    <a href="#" class="btn btn--outline">Figma</a>
+                <div class="slide-inner">
+                  <div class="slide-info">
+                    <p class="slide-role">Personal 100%</p>
+                    <h3 class="slide-title">Aesop 프래그런스 컬렉션 웹사이트</h3>
+                    <div class="slide-facts">
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">작업 기여</span>
+                        <span class="slide-fact-value">기획 + 디자인 + 바이브코딩</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">제작 기간</span>
+                        <span class="slide-fact-value">1 Day</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">개발 환경</span>
+                        <img src="assets/icons/figma-w.svg" alt="Figma" class="slide-fact-icon">
+                        <img src="assets/icons/cursor-logo.svg" alt="Cursor" class="tool-icon">
+
+                      </div>
+                    </div>
+                    <p class="slide-desc">브랜드 고유의 절제된 무드를 살려 자연에서 영감을 받은 노트를 소개하는 향수 컬렉션 랜딩 페이지 UI 디자인 프로젝트입니다.</p>
+                    <div class="slide-tags">
+                      <button type="button" class="slide-tag">Planning</button>
+                      <button type="button" class="slide-tag">Github</button>
+                    </div>
                   </div>
-                </div>
-                <div class="slide-phones">
-                  <div class="phone-mockup img-placeholder"></div>
-                  <div class="phone-mockup img-placeholder"></div>
+                  <div class="slide-mockup slide-mockup--aesop">
+                    <div class="mockup-glow" aria-hidden="true"></div>
+                    <img src="assets/images/aesop.png" alt="Aesop 프래그런스 컬렉션 웹사이트 목업" class="mockup-image mockup-image--aesop" loading="lazy">
+                  </div>
                 </div>
               </div>
               <div class="slide slide--uiux">
-                <div class="slide-info">
-                  <h3 class="slide-title">Project Title</h3>
-                  <p class="slide-desc">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-                  <div class="slide-actions">
-                    <a href="#" class="btn">Visit Website</a>
-                    <a href="#" class="btn btn--outline">Figma</a>
+                <div class="slide-inner">
+                  <div class="slide-info">
+                    <p class="slide-role">Team Project</p>
+                    <h3 class="slide-title">티모 - 팀원 매칭 플랫폼 앱 디자인</h3>
+                    <div class="slide-facts">
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">작업 기여</span>
+                        <span class="slide-fact-value">조장 + 기획 + 디자인(AI) + 바이브코딩</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">제작 기간</span>
+                        <span class="slide-fact-value">1 Week</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">개발 환경</span>
+                        <img src="assets/icons/figma-w.svg" alt="Figma" class="slide-fact-icon">
+                        <img src="assets/icons/claude-logo.svg" alt="Claude" class="tool-icon">
+                      </div>
+                    </div>
+                    <p class="slide-desc">공모전과 사이드 프로젝트에 필요한 팀원을 빠르게 찾을 수 있도록 검색과 매칭 흐름을 설계한 모바일 앱 UI/UX 프로젝트입니다.</p>
+                    <div class="slide-tags">
+                      <button type="button" class="slide-tag">Slide</button>
+                      <button type="button" class="slide-tag">Github</button>
+                    </div>
+                  </div>
+                  <div class="slide-mockup">
+                    <div class="mockup-glow" aria-hidden="true"></div>
+                    <img src="assets/images/timo.png" alt="티모 팀원 매칭 플랫폼 앱 목업" class="mockup-image" loading="lazy">
                   </div>
                 </div>
-                <div class="slide-phones">
-                  <div class="phone-mockup img-placeholder"></div>
-                  <div class="phone-mockup img-placeholder"></div>
+              </div>
+              <div class="slide slide--uiux">
+                <div class="slide-inner">
+                  <div class="slide-info">
+                    <p class="slide-role">Personal 100%</p>
+                    <h3 class="slide-title">뚜레쥬르 웹사이트 리디자인</h3>
+                    <div class="slide-facts">
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">작업 기여</span>
+                        <span class="slide-fact-value">기획 + 디자인</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">제작 기간</span>
+                        <span class="slide-fact-value">2 Days</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">개발 환경</span>
+                        <img src="assets/icons/figma-w.svg" alt="Figma" class="slide-fact-icon">
+                      </div>
+                    </div>
+                    <p class="slide-desc">신제품 프로모션을 효과적으로 노출하기 위해 메인 배너와 정보 구조를 재정비한 베이커리 브랜드 웹사이트 UI 디자인 프로젝트입니다.</p>
+                    <div class="slide-tags">
+                      <button type="button" class="slide-tag">Planning</button>
+                      <button type="button" class="slide-tag">Figma</button>
+                    </div>
+                  </div>
+                  <div class="slide-mockup slide-mockup--tourlesjour">
+                    <div class="mockup-glow" aria-hidden="true"></div>
+                    <img src="assets/images/tourlesjour.png" alt="뚜레쥬르 웹사이트 리뉴얼 목업" class="mockup-image mockup-image--tourlesjour" loading="lazy">
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <button class="slider-arrow slider-next" aria-label="다음 프로젝트">&#8594;</button>
+          <button class="slider-arrow slider-next" aria-label="다음 프로젝트"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
         </div>
         <div class="slider-indicator">
           <span class="current">01</span> / <span class="total">03</span>
@@ -278,52 +380,145 @@
         <h2 class="section-title">Web Publishing</h2>
         <div class="section-body">
         <div class="slider-wrapper" data-slider>
-          <button class="slider-arrow slider-prev" aria-label="이전 프로젝트">&#8592;</button>
+          <button class="slider-arrow slider-prev" aria-label="이전 프로젝트"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
           <div class="slider-viewport">
             <div class="slider-track">
-              <!-- 수정: 프로젝트 -->
-              <div class="slide slide--web">
-                <div class="slide-image img-placeholder">
-                  <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-                </div>
-                <div class="slide-side">
-                  <h3 class="slide-title">Project Title</h3>
-                  <p class="slide-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                  <div class="slide-actions">
-                    <a href="#" class="btn">Visit Website</a>
-                    <a href="#" class="btn btn--outline">Figma</a>
+              <!-- 수정: 기간/역할/태그 등 실제 프로젝트 정보에 맞게 조정하세요 -->
+              <div class="slide">
+                <div class="slide-inner">
+                  <div class="slide-info">
+                    <p class="slide-role">Team Project</p>
+                    <h3 class="slide-title">제주비건 웹사이트 리뉴얼</h3>
+                    <div class="slide-facts">
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">작업 기여</span>
+                        <span class="slide-fact-value">기획 + 디자인 + 코딩</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">제작 기간</span>
+                        <span class="slide-fact-value">1 Month</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">개발 환경</span>
+                        <img src="assets/icons/figma-w.svg" alt="Figma" class="slide-fact-icon">
+                        <img src="assets/icons/html-p.svg" alt="HTML5" class="skill-icon">
+                        <img src="assets/icons/css-p.svg" alt="CSS3" class="skill-icon">
+                        <img src="assets/icons/javascript.svg" alt="JavaScript" class="skill-icon">
+                      </div>
+                    </div>
+                    <p class="slide-desc">복잡하게 흩어져 있던 제주 비건 여행 정보를 효율적으로 탐색할 수 있도록 사용성과 접근성을 개선한 웹사이트 리디자인 프로젝트입니다.</p>
+                    <div class="slide-tags">
+                      <button type="button" class="slide-tag">Planning</button>
+                      <button type="button" class="slide-tag">Go to site</button>
+                    </div>
+                  </div>
+                  <div class="slide-mockup slide-mockup--web-xl">
+                    <div class="mockup-glow" aria-hidden="true"></div>
+                    <img src="assets/images/jejuvegan.png" alt="제주비건 웹사이트 리디자인 목업" class="mockup-image mockup-image--web-xl" loading="lazy">
                   </div>
                 </div>
               </div>
-              <div class="slide slide--web">
-                <div class="slide-image img-placeholder">
-                  <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-                </div>
-                <div class="slide-side">
-                  <h3 class="slide-title">Project Title</h3>
-                  <p class="slide-desc">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
-                  <div class="slide-actions">
-                    <a href="#" class="btn">Visit Website</a>
-                    <a href="#" class="btn btn--outline">Figma</a>
+              <div class="slide">
+                <div class="slide-inner">
+                  <div class="slide-info">
+                    <p class="slide-role">Personal Project</p>
+                    <h3 class="slide-title">도미노피자 웹사이트 리뉴얼</h3>
+                    <div class="slide-facts">
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">작업 기여</span>
+                        <span class="slide-fact-value">기획 + 디자인 + 코딩</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">제작 기간</span>
+                        <span class="slide-fact-value">1 Month</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">개발 환경</span>
+                        <img src="assets/icons/figma-w.svg" alt="Figma" class="slide-fact-icon">
+                        <img src="assets/icons/html-p.svg" alt="HTML5" class="skill-icon">
+                        <img src="assets/icons/css-p.svg" alt="CSS3" class="skill-icon">
+                        <img src="assets/icons/javascript.svg" alt="JavaScript" class="skill-icon">
+                      </div>
+                    </div>
+                    <p class="slide-desc">도미노피자 공식 홈페이지 디자인을 기준으로 시맨틱 마크업과 반응형 레이아웃을 구현한 웹 퍼블리싱 연습 프로젝트입니다.</p>
+                    <div class="slide-tags">
+                      <button type="button" class="slide-tag">Web Publishing</button>
+                      <button type="button" class="slide-tag">Go to site</button>
+                    </div>
+                  </div>
+                  <div class="slide-mockup slide-mockup--web-lg">
+                    <div class="mockup-glow" aria-hidden="true"></div>
+                    <img src="assets/images/domino.png" alt="도미노피자 웹사이트 퍼블리싱 목업" class="mockup-image mockup-image--web-lg" loading="lazy">
                   </div>
                 </div>
               </div>
-              <div class="slide slide--web">
-                <div class="slide-image img-placeholder">
-                  <svg class="placeholder-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+              <div class="slide">
+                <div class="slide-inner">
+                  <div class="slide-info">
+                    <p class="slide-role">Personal Project</p>
+                    <h3 class="slide-title">STAND OIL 웹사이트 리디자인</h3>
+                    <div class="slide-facts">
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">작업 기여</span>
+                        <span class="slide-fact-value">기획 + 디자인 + 바이브코딩</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">제작 기간</span>
+                        <span class="slide-fact-value">1 Day</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">개발 환경</span>
+                        <img src="assets/icons/figma-w.svg" alt="Figma" class="slide-fact-icon">
+                      </div>
+                    </div>
+                    <p class="slide-desc">제품 이미지와 브랜드 스토리를 효과적으로 전달하는 데 집중해 스탠드오일 공식 사이트를 퍼블리싱한 프로젝트입니다.</p>
+                    <div class="slide-tags">
+                      <button type="button" class="slide-tag">Web Publishing</button>
+                      <button type="button" class="slide-tag">Go to site</button>
+                    </div>
+                  </div>
+                  <div class="slide-mockup slide-mockup--standoil">
+                    <div class="mockup-glow" aria-hidden="true"></div>
+                    <img src="assets/images/standoil.png" alt="STAND OIL 웹사이트 퍼블리싱 목업" class="mockup-image mockup-image--standoil" loading="lazy">
+                  </div>
                 </div>
-                <div class="slide-side">
-                  <h3 class="slide-title">Project Title</h3>
-                  <p class="slide-desc">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                  <div class="slide-actions">
-                    <a href="#" class="btn">Visit Website</a>
-                    <a href="#" class="btn btn--outline">Figma</a>
+              </div>
+              <div class="slide">
+                <div class="slide-inner">
+                  <div class="slide-info">
+                    <p class="slide-role">Personal Project</p>
+                    <h3 class="slide-title">LAIKA CINEMA 웹사이트 리뉴얼</h3>
+                    <div class="slide-facts">
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">작업 기여</span>
+                        <span class="slide-fact-value">기획 + 디자인 + 코딩</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">제작 기간</span>
+                        <span class="slide-fact-value">2 weeks</span>
+                      </div>
+                      <div class="slide-fact">
+                        <span class="slide-fact-label">개발 환경</span>
+                        <img src="assets/icons/figma-w.svg" alt="Figma" class="slide-fact-icon">
+                        <img src="assets/icons/html-p.svg" alt="HTML5" class="skill-icon">
+                        <img src="assets/icons/css-p.svg" alt="CSS3" class="skill-icon">
+                      </div>
+                    </div>
+                    <p class="slide-desc">독립예술영화관 라이카시네마의 감성적인 무드를 살려 상영작과 상영관 정보를 소개하는 웹 퍼블리싱 프로젝트입니다.</p>
+                    <div class="slide-tags">
+                      <button type="button" class="slide-tag">Web Publishing</button>
+                      <button type="button" class="slide-tag">Go to site</button>
+                    </div>
+                  </div>
+                  <div class="slide-mockup">
+                    <div class="mockup-glow" aria-hidden="true"></div>
+                    <img src="assets/images/laika.png" alt="LAIKA CINEMA 웹사이트 퍼블리싱 목업" class="mockup-image" loading="lazy">
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <button class="slider-arrow slider-next" aria-label="다음 프로젝트">&#8594;</button>
+          <button class="slider-arrow slider-next" aria-label="다음 프로젝트"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
         </div>
         <div class="slider-indicator">
           <span class="current">01</span> / <span class="total">03</span>
@@ -342,35 +537,35 @@
           <a href="jeju.html" class="graphic-item">
             <img src="assets/images/jeju.png" alt="나 홀로, JEJU VLOG 유튜브 썸네일 목업" loading="lazy">
             <div class="graphic-overlay">
-              <h4>JEJU VLOG</h4>
+              <h4>유튜브 썸네일 디자인</h4>
               <span class="btn">View Detail</span>
             </div>
           </a>
           <a href="festival.html" class="graphic-item">
             <img src="assets/images/festival.png" alt="Park Music Festival 배너 목업" loading="lazy">
             <div class="graphic-overlay">
-              <h4>Park Music Festival</h4>
+              <h4>페스티벌 배너 디자인</h4>
               <span class="btn">View Detail</span>
             </div>
           </a>
           <a href="powerade.html" class="graphic-item">
             <img src="assets/images/powerade.png" alt="Powerade Power Beyond 포스터 목업" loading="lazy">
             <div class="graphic-overlay">
-              <h4>Powerade — Power Beyond</h4>
+              <h4>AI 포스터 디자인</h4>
               <span class="btn">View Detail</span>
             </div>
           </a>
           <a href="logo.html" class="graphic-item">
             <img src="assets/images/logodesign.png" alt="브랜드 로고 디자인 목업" loading="lazy">
             <div class="graphic-overlay">
-              <h4>Brand Logo Design</h4>
+              <h4>이름 로고 디자인</h4>
               <span class="btn">View Detail</span>
             </div>
           </a>
           <a href="review.html" class="graphic-item">
             <img src="assets/images/review.png" alt="리뷰챌린지 이벤트 포스터 목업" loading="lazy">
             <div class="graphic-overlay">
-              <h4>리뷰챌린지 이벤트</h4>
+              <h4>이벤트 포스터 디자인</h4>
               <span class="btn">View Detail</span>
             </div>
           </a>
@@ -383,7 +578,7 @@
     <footer class="section footer" id="footer">
       <div class="container footer-inner">
         <!-- 수정: 이메일 -->
-        <a href="mailto:hello@example.com" class="footer-email">hello@example.com</a>
+        <a href="mailto:hello@example.com" class="footer-email">jalmt37@gmail.com</a>
         <!-- 수정: 카피라이트 -->
         <p class="footer-copy">&copy; 2026 Portfolio. All rights reserved.</p>
       </div>

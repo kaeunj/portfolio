@@ -54,26 +54,55 @@ gsap.registerPlugin(ScrollTrigger);
 })();
 
 /* ---------------------------------------------------------
-   3. Desktop 등장 애니메이션
+   3. Desktop 등장 애니메이션 — 히어로로 스크롤해서 돌아올 때마다 재생
    --------------------------------------------------------- */
 (function initDesktopReveal() {
+  const hero = document.getElementById('hero');
   const name = document.querySelector('.desktop-name');
-  if (!name) return;
+  if (!hero || !name) return;
 
-  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  // 상단 메뉴바는 모든 섹션에 고정 노출되므로 최초 1회만 페이드인
+  gsap.from('.menubar', { y: -20, opacity: 0, duration: 0.55, ease: 'power3.out' });
 
-  tl
-    .from('.menubar', { y: -20, opacity: 0, duration: 0.55 })
-    .from(name, { y: 32, opacity: 0, duration: 0.8 }, '-=0.2')
-    .from('.desktop-role', { y: 16, opacity: 0, duration: 0.6 }, '-=0.45')
-    .from('.sticky-note', { x: -28, opacity: 0, duration: 0.65 }, '-=0.5')
-    .from('.desktop-icons .desktop-icon', {
-      x: 28, opacity: 0,
-      stagger: 0.09,
-      duration: 0.5,
-      clearProps: 'x,opacity',
-    }, '-=0.55')
-    .from('.dock', { y: 24, opacity: 0, duration: 0.6 }, '-=0.5');
+  const targets = [name, '.desktop-role', '.sticky-note', '.desktop-icons .desktop-icon', '.dock'];
+  let tl = null;
+  let isVisible = false;
+
+  function play() {
+    if (isVisible) return;
+    isVisible = true;
+    if (tl) tl.kill();
+
+    tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+      .fromTo(name, { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 })
+      .fromTo('.desktop-role', { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, '-=0.45')
+      .fromTo('.sticky-note', { x: -28, opacity: 0 }, { x: 0, opacity: 1, duration: 0.65 }, '-=0.5')
+      .fromTo('.desktop-icons .desktop-icon',
+        { x: 28, opacity: 0 },
+        { x: 0, opacity: 1, stagger: 0.09, duration: 0.5, clearProps: 'transform' },
+        '-=0.55'
+      )
+      .fromTo('.dock', { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, '-=0.5');
+  }
+
+  function reset() {
+    if (!isVisible) return;
+    isVisible = false;
+    if (tl) tl.kill();
+    gsap.set(targets, { opacity: 0, clearProps: 'transform' });
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) play();
+        else reset();
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  observer.observe(hero);
 })();
 
 /* ---------------------------------------------------------
@@ -167,6 +196,72 @@ gsap.registerPlugin(ScrollTrigger);
 })();
 
 /* ---------------------------------------------------------
+   5-1. Profile 섹션 등장 애니메이션 + Skill bar 채우기
+   --------------------------------------------------------- */
+(function initProfileReveal() {
+  const section = document.getElementById('profile');
+  if (!section) return;
+
+  const title    = section.querySelector('.section-title');
+  const photo    = section.querySelector('.profile-photo');
+  const about    = section.querySelector('.profile-about');
+  const contact  = section.querySelector('.profile-contact');
+  const skills   = section.querySelector('.profile-skills');
+  const fills    = section.querySelectorAll('.skill-fill');
+
+  let tl = null;
+  let fillTween = null;
+  let isVisible = false;
+
+  function reveal() {
+    if (isVisible) return;
+    isVisible = true;
+    if (tl) tl.kill();
+    if (fillTween) fillTween.kill();
+
+    tl = gsap.timeline({ defaults: { ease: 'power3.out', clearProps: 'transform' } })
+      .fromTo(title,   { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 })
+      .fromTo(photo,   { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.7 }, '-=0.45')
+      .fromTo(about,   { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7 }, '-=0.45')
+      .fromTo(contact, { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7 }, '-=0.5')
+      .fromTo(skills,  { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, '-=0.45');
+
+    fillTween = gsap.fromTo(fills,
+      { width: '0%' },
+      {
+        width: (i, el) => `${el.dataset.fill}%`,
+        duration: 1,
+        stagger: 0.15,
+        delay: 0.9,
+        ease: 'power2.out',
+      }
+    );
+  }
+
+  function hide() {
+    if (!isVisible) return;
+    isVisible = false;
+    if (tl) tl.kill();
+    if (fillTween) fillTween.kill();
+
+    gsap.set([title, photo, about, contact, skills], { opacity: 0, clearProps: 'transform' });
+    gsap.set(fills, { width: '0%' });
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) reveal();
+        else hide();
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  observer.observe(section);
+})();
+
+/* ---------------------------------------------------------
    6. Desktop 폴더 아이콘 클릭 → 해당 섹션으로 이동
    --------------------------------------------------------- */
 document.querySelectorAll('.desktop-icon').forEach((icon) => {
@@ -202,35 +297,35 @@ const observerRoot  = isMobileView() ? null : snapContainer;
 const sectionObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-
       const id = entry.target.id;
+
+      entry.target.querySelectorAll('.fade-up').forEach((el) => {
+        if (entry.isIntersecting) {
+          if (el.classList.contains('visible')) return;
+          el.classList.add('visible');
+          gsap.fromTo(el,
+            { y: 16, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out', clearProps: 'transform' }
+          );
+        } else {
+          el.classList.remove('visible');
+          gsap.set(el, { opacity: 0, clearProps: 'transform' });
+        }
+      });
+
+      if (!entry.isIntersecting) return;
 
       if (id === 'hero') {
         navLinks.forEach((l) => l.classList.remove('active'));
       } else {
         setActiveNav(id);
       }
-
-      entry.target.querySelectorAll('.fade-up').forEach((el) => {
-        if (el.classList.contains('visible')) return;
-        el.classList.add('visible');
-        gsap.from(el, {
-          y: 16, opacity: 0,
-          duration: 0.4,
-          ease: 'power2.out',
-          clearProps: 'all',
-        });
-      });
     });
   },
   { root: observerRoot, threshold: 0.08 }
 );
 
 sections.forEach((s) => sectionObserver.observe(s));
-
-const heroFadeEl = document.querySelector('#hero .fade-up');
-if (heroFadeEl) heroFadeEl.classList.add('visible');
 
 /* ---------------------------------------------------------
    8. 메뉴바 / Apple 로고 클릭 Smooth Scroll
@@ -277,22 +372,69 @@ function initSlider(wrapper) {
   const indicator = wrapper.closest('.slider-section').querySelector('.slider-indicator');
   const currentEl = indicator.querySelector('.current');
   const totalEl   = indicator.querySelector('.total');
+  const section   = wrapper.closest('.section');
+  const isCardSlider = section && (section.id === 'uiux' || section.id === 'web');
   let current = 0;
   const total = slides.length;
 
   totalEl.textContent = String(total).padStart(2, '0');
 
+  // UI/UX, Web Publishing 슬라이드 공통: 좌측 정보는 왼쪽에서, 우측 목업은 오른쪽에서 순차적으로 Fade In
+  function revealUiuxSlide(slide) {
+    const info   = slide.querySelectorAll('.slide-info > *');
+    const mockup = slide.querySelector('.slide-mockup');
+
+    gsap.fromTo(info,
+      { x: -32, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.7, stagger: 0.12, ease: 'power3.out', clearProps: 'transform' }
+    );
+
+    if (mockup) {
+      gsap.fromTo(mockup,
+        { x: 40, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.85, delay: 0.15, ease: 'power3.out', clearProps: 'transform' }
+      );
+    }
+  }
+
   function goTo(index) {
     current = (index + total) % total;
     track.style.transform = `translateX(-${current * 100}%)`;
     currentEl.textContent = String(current + 1).padStart(2, '0');
-    gsap.from(slides[current], {
-      opacity: 0.5, duration: 0.45, ease: 'power2.out',
-    });
+
+    if (isCardSlider) {
+      revealUiuxSlide(slides[current]);
+    } else {
+      gsap.from(slides[current], {
+        opacity: 0.5, duration: 0.45, ease: 'power2.out',
+      });
+    }
   }
 
   prevBtn.addEventListener('click', () => goTo(current - 1));
   nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // 섹션이 뷰포트에 들어오고 나갈 때마다 현재 슬라이드 리빌을 재생/초기화
+  if (isCardSlider) {
+    let sectionVisible = false;
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (sectionVisible) return;
+          sectionVisible = true;
+          revealUiuxSlide(slides[current]);
+        } else {
+          sectionVisible = false;
+          const info   = slides[current].querySelectorAll('.slide-info > *');
+          const mockup = slides[current].querySelector('.slide-mockup');
+          gsap.set(info, { opacity: 0, clearProps: 'transform' });
+          if (mockup) gsap.set(mockup, { opacity: 0, clearProps: 'transform' });
+        }
+      });
+    }, { threshold: 0.2 });
+    revealObserver.observe(section);
+  }
 }
 
 document.querySelectorAll('[data-slider]').forEach(initSlider);
@@ -307,9 +449,7 @@ document.querySelectorAll('[data-slider]').forEach(initSlider);
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
+        entry.target.classList.toggle('visible', entry.isIntersecting);
       });
     },
     { threshold: 0.12 }
