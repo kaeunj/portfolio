@@ -49,7 +49,7 @@
       <!-- Sticky Note -->
       <div class="sticky-note" aria-hidden="true">
         <div class="sticky-note-body">
-          <p>Hi 👋<br>Thanks for visiting my portfolio :)<br><br>-Kaeun</p>
+          <p>Hi 👋<br><br>Welcome to<br>my portfolio.</p>
           <p class="sticky-tip">Tip 💡<br>Scroll to explore!</p>
         </div>
       </div>
@@ -94,7 +94,7 @@
             <span class="dock-tooltip">Safari</span>
           </a>
           <button class="dock-item" aria-label="VS Code">
-            <img src="assets/icons/vscode.svg" alt="VS Code" class="dock-icon">
+            <img src="assets/icons/vscode.svg" alt="VS Code" class="dock-icon dock-icon--vscode">
             <span class="dock-tooltip">VS Code</span>
           </button>
           <a href="#hero" class="dock-item" aria-label="Figma">
@@ -102,7 +102,7 @@
             <span class="dock-tooltip">Figma</span>
           </a>
           <a href="#hero" class="dock-item" aria-label="Photoshop">
-            <img src="assets/icons/photoshop.svg" alt="Photoshop" class="dock-icon">
+            <img src="assets/icons/photoshop.svg" alt="Photoshop" class="dock-icon dock-icon--photoshop">
             <span class="dock-tooltip">Photoshop</span>
           </a>
           <a href="mailto:jalmt37@gmail.com" class="dock-item" aria-label="Mail">
@@ -111,7 +111,7 @@
           </a>
           <div class="dock-sep" aria-hidden="true"></div>
           <a href="#hero" class="dock-item" aria-label="Trash">
-            <img src="assets/icons/Trash Full.svg" alt="Trash" class="dock-icon">
+            <img src="assets/icons/Trash Full.svg" alt="Trash" class="dock-icon dock-icon--trash">
             <span class="dock-tooltip">Trash</span>
           </a>
         </div>
@@ -126,12 +126,15 @@
 
         <div class="section-body">
         <div class="profile-layout">
-          <!-- 프로필 사진 (추후 src만 교체하면 동일 레이아웃 유지) -->
-          <img
-            src="assets/images/profile-placeholder.svg"
-            alt="고가은 프로필 사진"
-            class="profile-photo"
-          >
+          <div class="profile-photo-wrap">
+            <!-- 프로필 사진 (추후 src만 교체하면 동일 레이아웃 유지) -->
+            <img
+              src="assets/images/profile-placeholder.svg"
+              alt="고가은 프로필 사진"
+              class="profile-photo"
+            >
+            <p class="profile-quote">디자인을 넘어,<br>경험을 완성합니다.</p>
+          </div>
 
           <!-- 우측 정보 -->
           <div class="profile-right">
@@ -257,8 +260,8 @@
                     </div>
                     <p class="slide-desc">국립극단 모바일 애플리케이션의 사용자 경험을 개선하기 위해 정보 탐색과 공연 예매 과정을 구성한 UI 디자인 프로젝트입니다.</p>
                     <div class="slide-tags">
-                      <button type="button" class="slide-tag">Planning</button>
-                      <button type="button" class="slide-tag">Prototype</button>
+                      <a href="national.html" class="slide-tag">Planning</a>
+                      <a href="https://www.figma.com/proto/KMcTH0EXpJiK8MEQ6LfBcL/3-%EB%AA%A8%EB%B0%94%EC%9D%BC%EC%95%B1UI%EB%94%94%EC%9E%90%EC%9D%B8?node-id=293-909&p=f&viewport=150%2C18%2C0.14&t=z1ICjy1F1GaCmMUb-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=248%3A2974&page-id=2%3A6" target="_blank" rel="noopener noreferrer" class="slide-tag">Prototype</a>
                     </div>
                   </div>
                   <div class="slide-mockup slide-mockup--national">
@@ -271,7 +274,7 @@
                 <div class="slide-inner">
                   <div class="slide-info">
                     <p class="slide-role">Team Project</p>
-                    <h3 class="slide-title">티모 - 팀원 매칭 플랫폼 앱 디자인</h3>
+                    <h3 class="slide-title">TIMO - 팀원 매칭 플랫폼 앱 디자인</h3>
                     <div class="slide-facts">
                       <div class="slide-fact">
                         <span class="slide-fact-label">작업 기여</span>
@@ -289,8 +292,9 @@
                     </div>
                     <p class="slide-desc">공모전과 사이드 프로젝트에 필요한 팀원을 빠르게 찾을 수 있도록 검색과 매칭 흐름을 설계한 모바일 앱 UI/UX 프로젝트입니다.</p>
                     <div class="slide-tags">
-                      <button type="button" class="slide-tag">Slide</button>
-                      <button type="button" class="slide-tag">Github</button>
+                      <a href="https://www.figma.com/slides/uEAjOOwXkDTIwd1SpKnQnX" target="_blank" rel="noopener noreferrer" class="slide-tag">Slide</a>
+                      <a href="https://github.com/kaeunj/timo.git" target="_blank" rel="noopener noreferrer" class="slide-tag">Github</a>
+                      <a href="https://timo-sigma-six.vercel.app/" target="_blank" rel="noopener noreferrer" class="slide-tag">Go to site</a>
                     </div>
                   </div>
                   <div class="slide-mockup">
@@ -396,7 +400,7 @@
                       </div>
                       <div class="slide-fact">
                         <span class="slide-fact-label">제작 기간</span>
-                        <span class="slide-fact-value">1 Month</span>
+                        <span class="slide-fact-value">2 Weeks</span>
                       </div>
                       <div class="slide-fact">
                         <span class="slide-fact-label">개발 환경</span>
@@ -408,8 +412,8 @@
                     </div>
                     <p class="slide-desc">복잡하게 흩어져 있던 제주 비건 여행 정보를 효율적으로 탐색할 수 있도록 사용성과 접근성을 개선한 웹사이트 리디자인 프로젝트입니다.</p>
                     <div class="slide-tags">
-                      <button type="button" class="slide-tag">Planning</button>
-                      <button type="button" class="slide-tag">Go to site</button>
+                      <a href="jejuvegan.html" class="slide-tag">Planning</a>
+                      <a href="https://kis0503.dothome.co.kr" target="_blank" rel="noopener noreferrer" class="slide-tag">Go to site</a>
                     </div>
                   </div>
                   <div class="slide-mockup slide-mockup--web-xl">
@@ -442,8 +446,8 @@
                     </div>
                     <p class="slide-desc">도미노피자 공식 홈페이지 디자인을 기준으로 시맨틱 마크업과 반응형 레이아웃을 구현한 웹 퍼블리싱 연습 프로젝트입니다.</p>
                     <div class="slide-tags">
-                      <button type="button" class="slide-tag">Web Publishing</button>
-                      <button type="button" class="slide-tag">Go to site</button>
+                      <a href="https://www.figma.com/slides/tryQ93BQ4QC7gJW5aINwUk" target="_blank" rel="noopener noreferrer" class="slide-tag">Slide</a>
+                      <a href="https://kke123.dothome.co.kr" target="_blank" rel="noopener noreferrer" class="slide-tag">Go to site</a>
                     </div>
                   </div>
                   <div class="slide-mockup slide-mockup--web-lg">
@@ -473,8 +477,8 @@
                     </div>
                     <p class="slide-desc">제품 이미지와 브랜드 스토리를 효과적으로 전달하는 데 집중해 스탠드오일 공식 사이트를 퍼블리싱한 프로젝트입니다.</p>
                     <div class="slide-tags">
-                      <button type="button" class="slide-tag">Web Publishing</button>
-                      <button type="button" class="slide-tag">Go to site</button>
+                      <a href="https://www.figma.com/site/Q8MRfv70MP05HxN6FTK3W8/%EA%B3%A0%EA%B0%80%EC%9D%80-%EB%B0%98%EC%9D%91%ED%98%95%EC%9B%B9?node-id=0-1&t=dlaRA4o8tGJ0YvWG-1" target="_blank" rel="noopener noreferrer" class="slide-tag">Figma</a>
+                      <a href="https://femur-sport-52541526.figma.site" target="_blank" rel="noopener noreferrer" class="slide-tag">Go to site</a>
                     </div>
                   </div>
                   <div class="slide-mockup slide-mockup--standoil">
@@ -507,7 +511,7 @@
                     <p class="slide-desc">독립예술영화관 라이카시네마의 감성적인 무드를 살려 상영작과 상영관 정보를 소개하는 웹 퍼블리싱 프로젝트입니다.</p>
                     <div class="slide-tags">
                       <button type="button" class="slide-tag">Web Publishing</button>
-                      <button type="button" class="slide-tag">Go to site</button>
+                      <a href="https://kaeunj.github.io/onepage/" target="_blank" rel="noopener noreferrer" class="slide-tag">Go to site</a>
                     </div>
                   </div>
                   <div class="slide-mockup">
@@ -577,10 +581,23 @@
     <!-- FOOTER -->
     <footer class="section footer" id="footer">
       <div class="container footer-inner">
-        <!-- 수정: 이메일 -->
-        <a href="mailto:hello@example.com" class="footer-email">jalmt37@gmail.com</a>
-        <!-- 수정: 카피라이트 -->
-        <p class="footer-copy">&copy; 2026 Portfolio. All rights reserved.</p>
+        <p class="footer-thanks">Thank you for watching</p>
+        <div class="footer-row">
+          <!-- 수정: 카피라이트 -->
+          <p class="footer-copy">&copy; 2026 Portfolio. All rights reserved.</p>
+          <div class="footer-buttons">
+            <button type="button" class="footer-btn" data-copy="010-3900-4874" data-label="전화번호가" aria-label="전화번호 복사">
+              <i class="fa-solid fa-phone"></i>
+            </button>
+            <button type="button" class="footer-btn" data-copy="jalmt37@gmail.com" data-label="이메일이" aria-label="이메일 복사">
+              <i class="fa-solid fa-envelope"></i>
+            </button>
+            <a href="https://github.com/kaeunj/portfolio.git" target="_blank" rel="noopener noreferrer" class="footer-btn" aria-label="GitHub 저장소 열기">
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </div>
+        </div>
+        <span class="footer-toast" id="footerToast" role="status" aria-live="polite"></span>
       </div>
     </footer>
 

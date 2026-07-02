@@ -204,6 +204,7 @@ gsap.registerPlugin(ScrollTrigger);
 
   const title    = section.querySelector('.section-title');
   const photo    = section.querySelector('.profile-photo');
+  const quote    = section.querySelector('.profile-quote');
   const about    = section.querySelector('.profile-about');
   const contact  = section.querySelector('.profile-contact');
   const skills   = section.querySelector('.profile-skills');
@@ -222,6 +223,7 @@ gsap.registerPlugin(ScrollTrigger);
     tl = gsap.timeline({ defaults: { ease: 'power3.out', clearProps: 'transform' } })
       .fromTo(title,   { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 })
       .fromTo(photo,   { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.7 }, '-=0.45')
+      .fromTo(quote,   { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, '-=0.3')
       .fromTo(about,   { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7 }, '-=0.45')
       .fromTo(contact, { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7 }, '-=0.5')
       .fromTo(skills,  { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, '-=0.45');
@@ -244,7 +246,7 @@ gsap.registerPlugin(ScrollTrigger);
     if (tl) tl.kill();
     if (fillTween) fillTween.kill();
 
-    gsap.set([title, photo, about, contact, skills], { opacity: 0, clearProps: 'transform' });
+    gsap.set([title, photo, quote, about, contact, skills], { opacity: 0, clearProps: 'transform' });
     gsap.set(fills, { width: '0%' });
   }
 
@@ -516,5 +518,36 @@ document.querySelectorAll('[data-slider]').forEach(initSlider);
   // bfcache로 복원된 경우 load 이벤트가 다시 발생하지 않으므로 별도 처리.
   window.addEventListener('pageshow', (e) => {
     if (e.persisted) restore();
+  });
+})();
+
+/* ---------------------------------------------------------
+   Footer — 전화번호/이메일 복사 버튼
+   --------------------------------------------------------- */
+(function initFooterCopyButtons() {
+  const toast = document.getElementById('footerToast');
+  const buttons = document.querySelectorAll('.footer-btn[data-copy]');
+  if (!buttons.length || !toast) return;
+
+  let hideTimer;
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add('is-visible');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => toast.classList.remove('is-visible'), 1800);
+  }
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const value = btn.dataset.copy;
+      const label = btn.dataset.label || '값이';
+      try {
+        await navigator.clipboard.writeText(value);
+        showToast(`${label} 복사되었습니다`);
+      } catch (err) {
+        showToast('복사에 실패했습니다');
+      }
+    });
   });
 })();

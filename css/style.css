@@ -14,6 +14,13 @@
   /* UI/UX, Web Publishing 슬라이더에서 제목이 차지하는 상단 공간만큼
      콘텐츠·화살표를 함께 보정할 때 재사용하는 값 */
   --uiux-title-offset: calc(var(--header-h) + 56px + 36px + 3rem);
+
+  /* Accent Glow — 섹션별 배경에 아주 은은하게 깔리는 컬러. 저채도·저투명도를
+     유지해 "색이 들어갔다"가 아니라 공간감만 느껴지도록 한다. */
+  --glow-uiux: rgba(143, 216, 200, 0.06);
+  --glow-web: rgba(216, 198, 165, 0.06);
+  --glow-graphic: rgba(184, 184, 184, 0.05);
+  --glow-size: 65vmax;
 }
 
 *, *::before, *::after {
@@ -460,7 +467,7 @@ body::before {
   align-items: center;
   gap: clamp(12px, 1.6vw, 24px);
   padding: 0 clamp(18px, 2.2vw, 30px);
-  height: clamp(64px, 8vh, 100px);
+  height: clamp(76px, 9vh, 116px);
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -495,10 +502,24 @@ body::before {
 }
 
 .dock-icon {
-  width: clamp(38px, 4vw, 60px);
-  height: clamp(38px, 4vw, 60px);
+  width: clamp(48px, 5vw, 76px);
+  height: clamp(48px, 5vw, 76px);
   object-fit: contain;
   display: block;
+}
+
+/* 아이콘 소스마다 도형이 캔버스를 채우는 비율(내부 여백)이 달라 같은 박스 크기로도
+   시각적 크기가 달라 보임 — 실제 렌더링된 도형 크기를 측정해 보정한 값. */
+.dock-icon--vscode {
+  transform: scale(0.94);
+}
+
+.dock-icon--photoshop {
+  transform: scale(0.85);
+}
+
+.dock-icon--trash {
+  transform: scale(0.87);
 }
 
 
@@ -540,6 +561,12 @@ body::before {
   align-items: start;
 }
 
+.profile-photo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .profile-photo {
   width: 100%;
   aspect-ratio: 439 / 527;
@@ -551,6 +578,16 @@ body::before {
 
 .profile-photo:hover {
   transform: scale(1.03);
+}
+
+.profile-quote {
+  margin-top: 24px;
+  font-size: clamp(1.1875rem, 1.6vw, 1.375rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+  text-align: center;
+  color: var(--text);
 }
 
 .profile-right {
@@ -692,7 +729,7 @@ body::before {
 .skill-fill {
   height: 100%;
   width: 0%;
-  background: #6ecff7;
+  background: #0591de;
   border-radius: 999px;
 }
 
@@ -729,6 +766,7 @@ body::before {
 /* JS 등장 애니메이션 전 초기 상태 — main.js initProfileReveal()에서 처리 */
 #profile .section-title,
 #profile .profile-photo,
+#profile .profile-quote,
 #profile .profile-about,
 #profile .profile-contact,
 #profile .profile-skills {
@@ -886,6 +924,7 @@ body::before {
 
 /* Planning / Prototype — 버튼 요소 */
 .slide-tag {
+  display: inline-block;
   font: inherit;
   font-size: clamp(0.75rem, 0.8vw, 0.875rem);
   padding: 7px 20px;
@@ -894,6 +933,7 @@ body::before {
   border: none;
   border-radius: 20px;
   font-weight: 500;
+  text-decoration: none;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease;
 }
@@ -1136,24 +1176,91 @@ body::before {
 
 .footer-inner {
   text-align: center;
+  position: relative;
 }
 
-.footer-email {
-  font-size: 1.25rem;
+.footer-thanks {
+  font-size: 2rem;
+  font-weight: 600;
   color: var(--text);
-  text-decoration: none;
-  font-weight: 500;
-  display: inline-block;
-  margin-bottom: 12px;
+  margin-bottom: 32px;
 }
 
-.footer-email:hover {
-  text-decoration: underline;
+.footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .footer-copy {
   font-size: 0.9375rem;
   color: var(--text-muted);
+}
+
+.footer-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 1.125rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.footer-btn:hover {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.footer-toast {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  right: 0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.8125rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateY(4px);
+  white-space: nowrap;
+}
+
+.footer-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .footer-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-toast {
+    right: 50%;
+    transform: translate(50%, 4px);
+  }
+
+  .footer-toast.is-visible {
+    transform: translate(50%, 0);
+  }
 }
 
 /* ===== 반응형 ===== */
@@ -1361,6 +1468,39 @@ body::before {
 /* slide 카드 perspective */
 .slide {
   perspective: 900px;
+}
+
+/* ===== Accent Glow — 섹션별 은은한 배경 Glow =====
+   커서 Glow(.cursor-orb, z-index:9999)와 겹치지 않도록 각 섹션 내부에서만
+   z-index:-1로 콘텐츠 뒤에 깔리는 독립된 스태킹 컨텍스트를 만든다. */
+#uiux,
+#web,
+#graphic {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+#uiux::before,
+#web::before,
+#graphic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#uiux::before {
+  background: radial-gradient(circle var(--glow-size) at 88% 8%, var(--glow-uiux) 0%, transparent 70%);
+}
+
+#web::before {
+  background: radial-gradient(circle var(--glow-size) at 6% 94%, var(--glow-web) 0%, transparent 70%);
+}
+
+#graphic::before {
+  background: radial-gradient(circle var(--glow-size) at 92% 92%, var(--glow-graphic) 0%, transparent 70%);
 }
 
 /* ===== 전체화면 슬라이더 (UIUX / Web Publishing) ===== */
